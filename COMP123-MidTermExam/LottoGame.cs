@@ -82,6 +82,7 @@ namespace COMP123_MidTermExam
         }
         #endregion
 
+        #region Constructors
         // CONSTRUCTORS +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
         /**
@@ -109,21 +110,37 @@ namespace COMP123_MidTermExam
             // call the _build method
             this._build();
         }
+        #endregion
 
+        #region Private Methods
         // PRIVATE METHODS ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
         // CREATE the private _initialize method here -----------------------------
-
+        //instantiates new objects for the private fields listed below
         private void _initialize()
         {
-            
+            //new Objects
+            List<int> numberList = new List<int>();
+            List<int> elementList = new List<int>();
+            Random random = new Random();
+
+            _numberList = numberList;
+            this._elementList = elementList;
+            this._random = random;
+
         }
         // CREATE the private _build method here -----------------------------------
         private void _build()
         {
-            throw new System.NotImplementedException();
+            //Loopto ADD interger Literals from 1 - SetSize
+            for (int i = 1; i < SetSize+1; i++)
+            {
+                NumberList.Add(i);
+            }
         }
+        #endregion
 
+        #region Overriden Methods
         // OVERRIDEN METHODS ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
         /**
@@ -151,15 +168,37 @@ namespace COMP123_MidTermExam
             return lottoNumberString;
         }
 
+        #endregion
 
-
-        public void PickElements()
-        {
-            throw new System.NotImplementedException();
-        }
+        #region PickElements
 
         // PUBLIC METHODS +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
         // CREATE the public PickElements method here ----------------------------
+        //Randomly Selects and Removes numbers from the NumberList and Adds to the ElementList
+
+        public void PickElements()
+        {
+            if (ElementList.Count > 0)
+            {
+                ///Clears
+                ElementList.Clear();
+                NumberList.Clear();
+                //rebuild using _build method
+                this._build();
+            }
+            ///local variable for random
+            int randomIndex = this.random.Next(SetSize);            
+            //REMOVE
+            NumberList.RemoveAt(randomIndex);
+            //ADDS
+            ElementList.Add(randomIndex);
+            //Sorts
+            ElementList.Sort();
+
+
+        }
+
+        #endregion
     }
 }
