@@ -192,7 +192,7 @@ namespace COMP123_MidTermExam
             //REMOVE
             NumberList.RemoveAt(randomIndex);
             //ADDS
-            ElementList.Add(randomIndex);
+            ElementList.Add(NumberList[randomIndex]);
             //Sorts
             ElementList.Sort();
 
